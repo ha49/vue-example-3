@@ -7,12 +7,30 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
 <body class="container mt-4">
-<div id="app">
-    <h2>{{name}}</h2>
-    <p>{{description}}</p>
-    <h3>${{price}}</h3>
 
+<div class="container" id="app">
+    <div class="row d-flex mb-3 align-items-center"
+         v-for =" item in products"
+         v-if="item.price<=Number(maximum)"
+    >
+        <div class="col-sm-4">
+            <img class="img-fluid d-block" :src="item.image" :alt="name">
+        </div>
+        <div class="col">
+            <h3 class="text-info">{{ item.name }}</h3>
+            <p class="mb-0">{{ item.description }}</p>
+            <div class="h5 float-right">${{item.price}}</div>
+        </div>
+    </div>
 </div>
+
+<!--<div id="app">-->
+<!--    <img    :src="image" :alt="name">-->
+<!--    <h2>{{name}}</h2>-->
+<!--    <p>{{description}}</p>-->
+<!--    <div class="h3">${{price}}</div>-->
+
+<!--</div>-->
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
@@ -20,12 +38,36 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 <script>
-    var data= {
-        name: 'Samsung S20',
-        description: 'This is the phone that will change photography.',
-        image: 'https://www.elgiganten.se/image/dv_web_D180001002370432/134761/samsung-galaxy-s20-ultra-5g-smartphone-12128gb-cosmic-grey.jpg?$fullsize$',
-        price: 1200
+    var data = {
 
+        maximum:1600,
+        products: [
+            {
+                "id": "532",
+                "name": "Samsung Galaxy S20 Ultra 5G 128 GB",
+                "description": "First of its kind Space Zoom, Single take and Bright Night transform how you share world.",
+                "price": 1400,
+
+                "image": "https://www.uscellular.com/content/dam/uscc-static/assets/commerce/catalog/devices/219009/images/GS20_5G_Front_CosmicGray_large.png"
+            },
+            {
+                "id": "530",
+                name: 'Samsung S20 5G128 GB',
+                description: 'This is the phone that will change photography.',
+                image: 'https://www.uscellular.com/content/dam/uscc-static/assets/commerce/catalog/devices/218970/images/GS20_Ultra_5G_Front_CosmicBlack_large.png',
+
+                price: 1200
+
+            }
+            ,
+            {
+                "id": "516",
+                "name": "Samsung Galaxy Z Flip 256 GB",
+                "description": "The full screen phone that folds to fit in your pocket with revolutionary flexible glass, a camera made to stand on its own, and a dual battery that lasts all day. Meet the phone changing the shape of the future.",
+                "price": 1600,
+                "image": "https://productimages.hepsiburada.net/s/36/550/10510518714418.jpg/format:webp"
+            }
+        ]
     }
 
     var app=new Vue ( {
